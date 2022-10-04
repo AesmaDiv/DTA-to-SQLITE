@@ -1,0 +1,38 @@
+                                        _PUMP CURVE MFG INFORMAION        _C_00_
+CENTRILIFT                              _ MANUFACTURER...................._A_15_
+FC1600                                  _ TYPE OR MODEL OF IMPELLER......._A_08_
+10-95                                   _ DATE OF CURVE MM/DD/YYYY........_A_11_
+2915                                    _ CURVE RPM......................._N_04_
+0                                       _ PUMP ROTATION 0=CW 1=CCW........_N_01_
+1                                       _ DATA TYPE 0=COEF 1=GRAPH........_N_01_
+0                                       _ UNITS OF MEASURE 0=METRIC 1=US.._N_01_
+                                        _ PUMP GAPH INFORMATION           _C_00_
+7                                       _ MAX HEAD GRAPH VALUE............_N_03_
+.3                                      _ HORSE POWER GRAPH VALUE........._N_03_
+30                                      _ EFF. GRAPH VALUE................_N_03_
+                                        _PUMP RATE INFORMATION            _C_00_
+165                                     _ MIN RATE OPERATING RANGE........_N_10_
+210                                     _ BEST RATE EFF. POINT............_N_10_
+275                                     _ MAX RATE OPERATING RANGE........_N_10_
+350                                     _ MAX RATE VALUE FOR RATE CURVE..._N_10_
+                                        _HEAD DATA                        _C_00_
+0                                       _ COEFF #0........................_A_20_
+2.1                                     _ COEFF #1........................_A_20_
+4.4                                     _ COEFF #2........................_A_20_
+5.8                                     _ COEFF #3........................_A_20_
+6.4                                     _ COEFF #4........................_A_20_
+6.5                                     _ COEFF #5........................_A_20_
+6.6                                     _ COEFF #6........................_A_20_
+                                        _ COEFF #7........................_A_20_
+                                        _ COEFF #8........................_A_20_
+                                        _ COEFF #9........................_A_20_
+                                        _HORSE POWER DATA                 _C_00_
+.25                                     _ COEFF #0........................_A_20_
+.255                                    _ COEFF #1........................_A_20_
+.273                                    _ COEFF #2........................_A_20_
+.265                                    _ COEFF #3........................_A_20_
+.24                                     _ COEFF #4........................_A_20_
+.207                                    _ COEFF #5........................_A_20_
+.183                                    _ COEFF #6........................_A_20_
+                                        _ COEFF #7........................_A_20_
+                                        _ COEFF #8........................_A_20_
