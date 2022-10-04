@@ -5,8 +5,11 @@ use encoding_rs::WINDOWS_1251;
 use encoding_rs_io::DecodeReaderBytesBuilder;
 
 fn main() {
-  let path = "/home/aesmadiv/Develop/Projects/Rust/learning/assets/curves";
-  let files = get_files(path);
+  let path = std::env::current_dir()
+    .expect("Error getting current working directory")
+    .as_path()
+    .join(std::path::Path::new("assets/curves"));
+  let files = get_files(path.as_path().to_str().unwrap());
   // files.iter().for_each(|f| println!("{}", f));
 
   let file_content = read_file(files[2].as_str());
