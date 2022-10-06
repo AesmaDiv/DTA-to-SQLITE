@@ -1,6 +1,6 @@
                                         _PUMP CURVE MFR INFORMATION       _C_00_
-BORETS                                  _  MANUFACTURER..................._A_15_
-а5ю-25д                                 _  TYPE OR MODEL OF IMPELLER......_A_18_
+анпеж                                   _  MANUFACTURER..................._A_30_
+а5ю-25д                                 _  TYPE OR MODEL OF IMPELLER......_A_30_
 07.2012                                 _  DATE OF CURVE MM/DD/YYYY......._A_11_
 2910                                    _  CURVE RPM......................_N_04_
                                         _  PUMP ROTATION 0=CW 1=CCW......._N_01_

@@ -1,6 +1,6 @@
                                         _PUMP CURVE MFR INFORMATION       _C_00_
 ÁÎÐÅÖ                                   _  MANUFACTURER..................._A_15_
-Á-Ä5-50ÀÑÏ                              _  TYPE OR MODEL OF IMPELLER......_A_18_
+Á-Ä5-50ÀÑÏ(09.2014)                     _  MANUFACTURER..................._A_15_
 09.2014                                 _  DATE OF CURVE MM/DD/YYYY......._A_11_
 2910                                    _  CURVE RPM......................_N_04_
 0                                       _  PUMP ROTATION 0=CW 1=CCW......._N_01_
@@ -13,7 +13,7 @@
                                         _PUMP RATE INFORMATION            _C_00_
 10                                      _  MIN RATE OPERATING RANGE ......_N_10_
 50                                      _  BEST RATE EFF. POINT .........._N_10_
-51                                      _  MAX RATE OPERATING RANGE......._N_10_
+50                                      _  MAX RATE OPERATING RANGE......._N_10_
 85                                      _  MAX RATE VALUE FOR RATE CURVE.._N_10_
                                         _HEAD DATA                        _C_00_
 0                                       _  COEF #0 OR HEAD @ 6/6 MAX RATE._A_20_

@@ -52,18 +52,20 @@ fn get_full_path(subpath: &str) -> String {
 
 /// получение списка полных путей к DTA файлам
 fn get_files(path: &str) -> Vec<String> {
-  let files = read_dir(path);
-  if files.is_ok() {
-    files.unwrap()
-    .map(
-      |file| file.unwrap()
-      .path()
-      .display()
-      .to_string())
-    .filter(|file| file.ends_with(".DTA"))
-    .collect::<Vec<String>>()
-  } else {
-    println!("{path}\n{:#?}", files.unwrap_err());
-    Vec::new()
+  match read_dir(path) {
+    Ok(files) => {
+      files
+        .map(
+          |file| file.unwrap()
+          .path()
+          .display()
+          .to_string())
+        .filter(|file| file.ends_with(".DTA"))
+        .collect::<Vec<String>>()
+    },
+    Err(err) => {
+      println!("{path}\n{:#?}", err);
+      Vec::new()
+    }
   }
 }
