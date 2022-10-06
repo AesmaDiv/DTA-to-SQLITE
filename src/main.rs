@@ -8,38 +8,38 @@ use pump::Pump;
 use db_writer::write_all_pumps;
 
 fn main() {
-  let path_db = "/home/aesmadiv/Develop/Projects/Python/PumpTest/assets/pump.sqlite";
-  let path_curves = get_curves_path("assets/curves");
+  // получение полных путей
+  let path_db = get_full_path("assets/pump.sqlite");
+  let path_curves = get_full_path("assets/curves");
+
+  // получение списка DTA файлов с описанием типоразмеров
   let files = get_files(path_curves.as_str());
-  if files.is_empty() {
-    return;
-  }
-
-  let mut pumps = Vec::new();
-  files.iter().for_each(
-    |f| {
-      // println!("{f}");
-      if let Some(pump) = Pump::load(f.as_str()) {
-        pumps.push(pump);
-        // println!("{pump:#?}");
+  if !files.is_empty() {
+    // получение списка типоразмеров
+    let mut pumps = Vec::new();
+    files.iter().for_each(
+      |f| {
+        if let Some(pump) = Pump::load(f.as_str()) {
+          pumps.push(pump);
+        }
       }
+    );
+
+    println!("Readed {}", pumps.len());
+    println!("Last {:#?}", pumps.last());
+
+    // запись типоразмеров в БД
+    let pumps_written = write_all_pumps(path_db.as_str(), pumps);
+    if pumps_written > 0 {
+      println!("{pumps_written} pumps written successfully");
+    } else {
+      println!("Failed to write pumps");
     }
-  );
-
-  println!("Readed {}", pumps.len());
-  println!("Last\n{:#?}", pumps.last());
-
-  let pumps_written = write_all_pumps(path_db, pumps);
-  if pumps_written > 0 {
-    println!("{pumps_written} pumps written successfully");
-  } else {
-    println!("Failed to write pumps");
   }
-
 }
 
 /// получение полного пути к папке с DTA файлами
-fn get_curves_path(subpath: &str) -> String {
+fn get_full_path(subpath: &str) -> String {
   let path_buf = std::env::current_dir()
     .expect("Error getting current working directory")
     .as_path()

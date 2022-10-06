@@ -1,6 +1,6 @@
 use rusqlite::Connection;
 use crate::pump::Pump;
-use crate::auxiliaries::join_to_string;
+use crate::auxiliaries::{round, join_to_string};
 
 /// подключение и запись в БД информации о типоразмерах
 pub fn write_all_pumps(path: &str, pumps: Vec<Pump>) -> usize {
