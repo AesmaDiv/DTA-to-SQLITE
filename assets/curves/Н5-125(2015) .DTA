@@ -1,6 +1,6 @@
 
  NOVOMET                                _  MANUFACTURER..................._A_15_
-Í5-125(2015)                            _  TYPE OR MODEL OF IMPELLER......_A_30_
+ï¿½5-125(2015)                            _  TYPE OR MODEL OF IMPELLER......_A_30_
 03.2012                                 _  DATE OF CURVE MM/DD/YYYY......._A_11_
 2910                                    _  CURVE RPM......................_N_04_
                                         _  PUMP ROTATION 0=CW 1=CCW......._N_01_
@@ -11,9 +11,9 @@
                                         _  HORSE POWER GRAPH VALUE........_N_03_
                                         _  EFF. GRAPH VALUE..............._N_03_
                                         _  EFF. GRAPH VALUE..............._N_03_
- 80                                     _  MIN RATE OPERATING RANGE ......_N_10_
- 125                                    _  BEST RATE EFF. POINT .........._N_10_
- 160                                    _  MAX RATE OPERATING RANGE......._N_10_
+80                                     _  MIN RATE OPERATING RANGE ......_N_10_
+125                                    _  BEST RATE EFF. POINT .........._N_10_
+160                                    _  MAX RATE OPERATING RANGE......._N_10_
 250                                     _  MAX RATE VALUE FOR RATE CURVE.._N_10_
 250                                     _  MAX RATE VALUE FOR RATE CURVE.._N_10_
 0                                       _  COEF #0 OR HEAD @ 6/6 MAX RATE._A_20_

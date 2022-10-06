@@ -1,59 +1,69 @@
-use std::fs::{read_dir, read_to_string, File};
-use std::io::Read;
+use std::fs::read_dir;
 
-use encoding_rs::WINDOWS_1251;
-use encoding_rs_io::DecodeReaderBytesBuilder;
+pub mod auxiliaries;
+pub mod pump;
+pub mod dta_reader;
+pub mod db_writer;
+use pump::Pump;
+use db_writer::write_all_pumps;
 
 fn main() {
-  let path = std::env::current_dir()
-    .expect("Error getting current working directory")
-    .as_path()
-    .join(std::path::Path::new("assets/curves"));
-  let files = get_files(path.as_path().to_str().unwrap());
-  // files.iter().for_each(|f| println!("{}", f));
+  let path_db = "/home/aesmadiv/Develop/Projects/Python/PumpTest/assets/pump.sqlite";
+  let path_curves = get_curves_path("assets/curves");
+  let files = get_files(path_curves.as_str());
+  if files.is_empty() {
+    return;
+  }
 
-  let file_content = read_file(files[2].as_str());
-  file_content.iter().for_each(|line| println!("{line}"));
+  let mut pumps = Vec::new();
+  files.iter().for_each(
+    |f| {
+      // println!("{f}");
+      if let Some(pump) = Pump::load(f.as_str()) {
+        pumps.push(pump);
+        // println!("{pump:#?}");
+      }
+    }
+  );
+
+  println!("Readed {}", pumps.len());
+  println!("Last\n{:#?}", pumps.last());
+
+  let pumps_written = write_all_pumps(path_db, pumps);
+  if pumps_written > 0 {
+    println!("{pumps_written} pumps written successfully");
+  } else {
+    println!("Failed to write pumps");
+  }
+
 }
 
+/// получение полного пути к папке с DTA файлами
+fn get_curves_path(subpath: &str) -> String {
+  let path_buf = std::env::current_dir()
+    .expect("Error getting current working directory")
+    .as_path()
+    .join(std::path::Path::new(subpath));
+  match path_buf.as_path().to_str() {
+    Some(result) => String::from(result),
+    _ => String::new()
+  }
+}
+
+/// получение списка полных путей к DTA файлам
 fn get_files(path: &str) -> Vec<String> {
   let files = read_dir(path);
   if files.is_ok() {
     files.unwrap()
-      .map(
-        |file| file.unwrap()
-          .path()
-          .display()
-          .to_string())
-      .collect::<Vec<String>>()
-    } else {
-      Vec::new()
-    }
-}
-
-fn read_file(path: &str) -> Vec<String> {
-  let mut file_content = read_to_string(path);
-  if file_content.is_err() {
-    file_content = read_file_alt(path);
-  }
-  if file_content.is_ok() {
-    file_content
-      .unwrap()
-      .lines()
-      .map(|line| line.to_string())
-      .collect::<Vec<String>>()
+    .map(
+      |file| file.unwrap()
+      .path()
+      .display()
+      .to_string())
+    .filter(|file| file.ends_with(".DTA"))
+    .collect::<Vec<String>>()
   } else {
-    println!("Error reading file {}:\n{}", path, file_content.unwrap_err());
+    println!("{path}\n{:#?}", files.unwrap_err());
     Vec::new()
   }
-}
-
-fn read_file_alt(path: &str) -> Result<String, std::io::Error> {
-  let mut result = String::new();
-  let file = File::open(path).expect("Error reading file");
-  _ = DecodeReaderBytesBuilder::new()
-    .encoding(Some(WINDOWS_1251))
-    .build(file)
-    .read_to_string(&mut result);
-  Ok(result)
 }
